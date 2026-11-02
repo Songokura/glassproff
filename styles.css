@@ -578,3 +578,25 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 }
 @media (max-width:760px) and (max-height:780px){.stack{height:36svh}.hero-tx{padding-top:16px}.hero .lead{margin-top:12px}.cta{margin-top:18px}}
 @media (max-width:760px) and (max-height:700px){.stack{height:31svh}}
+/* Демо плёнок: слои строго по контуру двух стёкол куба, смена режимов - мягкое перетекание без наложений */
+.demo-row .cell{clip-path:var(--poly)}
+.demo-row .cell.c1{--poly:polygon(15.9% 9.3%,49.7% 4.5%,50.1% 85.4%,19.8% 80.2%)}
+.demo-row .cell.c2{--poly:polygon(50.5% 4.6%,68.6% 20.4%,68.3% 67.6%,50.6% 85.4%)}
+.demo-row .cl{transition:opacity .55s var(--ease);transition-delay:0s}
+.demo-row .frost{background-image:linear-gradient(rgba(236,241,246,.2),rgba(236,241,246,.26)),url("assets/demo-frost.webp")}
+.demo-row .tint{background:linear-gradient(180deg,rgba(20,26,36,.52),rgba(16,20,28,.6))}
+.demo-row .bands{opacity:0;clip-path:none;transition:opacity .55s var(--ease);
+  background-image:linear-gradient(rgba(236,241,246,.55),rgba(236,241,246,.6)),url("assets/demo-frost.webp");
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0 41%,#000 41% 42.4%,transparent 42.4% 43.6%,#000 43.6% 47.6%,transparent 47.6% 48.8%,#000 48.8% 50.2%,transparent 50.2% 100%);
+          mask-image:linear-gradient(to bottom,transparent 0 41%,#000 41% 42.4%,transparent 42.4% 43.6%,#000 43.6% 47.6%,transparent 47.6% 48.8%,#000 48.8% 50.2%,transparent 50.2% 100%)}
+.demo-row .pane[data-state="bands"] .bands{opacity:1;clip-path:none}
+.demo-row .sheen{display:none}
+/* Брендирование: текст сверху, четыре кадра одной строкой - без гигантских фото */
+@media (min-width:761px){
+  .pair.brand{grid-template-columns:minmax(0,1fr);gap:28px}
+  .brand .pair-tx{order:-1;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:48px;align-items:end}
+  .brand .pair-tx > *{grid-column:1}
+  .brand .pair-tx .btn{grid-column:2;grid-row:1 / span 3;align-self:end;margin-top:0}
+  .brand .brand-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .brand-grid img{aspect-ratio:3/4}
+}
