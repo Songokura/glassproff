@@ -600,3 +600,8 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
   .brand .brand-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
   .brand-grid img{aspect-ratio:3/4}
 }
+/* Полосы в перспективе каждого стекла: SVG по углам граней куба */
+.demo-row .bands{display:none}
+.bands-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .55s var(--ease)}
+.bands-svg polygon{fill:rgba(236,241,246,.74)}
+.pane[data-state="bands"] .bands-svg{opacity:1}
