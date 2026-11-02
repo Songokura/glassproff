@@ -24,7 +24,7 @@
   mnav.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
   d.addEventListener('keydown', function(e){ if(e.key==='Escape' && !mnav.hidden) setMenu(false); });
 
-  /* Стекло в герое: четыре режима плёнки на одном кадре */
+  /* Стекло в разделе тонировки: четыре режима плёнки на одном кадре */
   var pane=d.querySelector('.pane'), seg=d.querySelectorAll('.seg button'), note=d.querySelector('.glass-note');
   var notes={
     clear:'Прозрачное - стекло без плёнки, коридор за перегородкой виден целиком.',
@@ -43,14 +43,17 @@
   seg.forEach(function(b){ b.addEventListener('click', function(){ setGlass(b.dataset.set, true); }); });
 
   /* Интро: один раз, медленно - прозрачное, полосы, матовое и обратно к прозрачному. Клик человека отменяет */
-  var heroImg=d.querySelector('.pane-img');
+  var introDone=false;
   function intro(){
-    if(reduce || location.hash || window.scrollY>80) return;
+    if(introDone || reduce || touched) return; introDone=true;
     setTimeout(function(){ if(!touched) setGlass('bands', false); }, 1200);
     setTimeout(function(){ if(!touched) setGlass('frost', false); }, 2400);
     setTimeout(function(){ if(!touched) setGlass('clear', false); }, 3600);
   }
-  if(heroImg.complete) intro(); else { heroImg.addEventListener('load', intro); heroImg.addEventListener('error', intro); }
+  if('IntersectionObserver' in window){
+    var pio=new IntersectionObserver(function(es){ if(es[0].isIntersecting){ intro(); pio.disconnect(); } }, {threshold:.55});
+    pio.observe(pane);
+  }
 
   /* Проявление кадров */
   var rv=d.querySelectorAll('.rv');

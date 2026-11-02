@@ -28,8 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/hero.webp" media="(min-width: 761px)">
-<link rel="preload" as="image" href="assets/hero-m.webp" media="(max-width: 760px)">
+<link rel="preload" as="image" href="assets/hero-lobbi.webp">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,7 +68,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=20261102-2">
+<link rel="stylesheet" href="styles.css?v=20261102-3">
 <script src="https://lead-bot.sultan-askarov-kz.workers.dev/t.js" data-site="glassproff" defer></script>
 </head>
 <body>
@@ -125,8 +124,11 @@
 
 <!-- Герой -->
 <section class="hero">
-  <div class="wrap hero-head">
-    <p class="hero-meta">Алматы и область · своё производство и монтаж</p>
+  <div class="hero-ph">
+    <img src="assets/hero-lobbi.webp" width="747" height="1600" alt="Стеклянный куб в чёрной алюминиевой раскладке в лобби жилого комплекса - объект GlassProff" fetchpriority="high">
+  </div>
+  <div class="hero-tx">
+    <p class="hero-meta"><i class="mf" aria-hidden="true"></i><span>Алматы<span class="m-hide"> и область</span> · <span class="m-hide">своё </span>производство и монтаж</span></p>
     <h1>Офисные перегородки из&nbsp;стекла и&nbsp;алюминия</h1>
     <p class="lead"><span class="d-only">Цельностеклянные и каркасные - от&nbsp;43&nbsp;000&nbsp;₸ за&nbsp;м². Тонировка стекла, ремонт алюминиевых окон и дверей. Замер бесплатно.</span><span class="m-only">От&nbsp;43&nbsp;000&nbsp;₸/м², замер бесплатно</span></p>
     <div class="hero-cta">
@@ -135,31 +137,9 @@
       <a class="quiet-link" href="https://www.instagram.com/glassproject.kz/" target="_blank" rel="noopener"><svg class="ic"><use href="#ic-ig"/></svg>Объекты с монтажа в Instagram</a>
     </div>
   </div>
+</section>
 
-  <div class="wrap">
-    <figure class="pane" data-state="clear" aria-label="Стеклянная перегородка GlassProff на объекте: режимы стекла">
-      <picture>
-        <source media="(max-width: 760px)" srcset="assets/hero-m.webp" width="900" height="900">
-        <img class="pane-img" src="assets/hero.webp" width="1200" height="800" alt="Цельностеклянная перегородка с дверью на входе в бизнес-центр, за стеклом офисный коридор" fetchpriority="high">
-      </picture>
-      <div class="cells" aria-hidden="true">
-        <div class="cell"><div class="cl frost"></div><div class="cl tint"></div><div class="cl bands"></div></div>
-        <div class="cell"><div class="cl frost"></div><div class="cl tint"></div><div class="cl bands"></div></div>
-        <div class="cell"><div class="cl frost"></div><div class="cl tint"></div><div class="cl bands"></div></div>
-      </div>
-      <div class="sheen" aria-hidden="true"></div>
-      <div class="seg" role="group" aria-label="Режим стекла">
-        <button type="button" data-set="clear" aria-pressed="true">Прозрачное</button>
-        <button type="button" data-set="tint" aria-pressed="false">Тонировка</button>
-        <button type="button" data-set="frost" aria-pressed="false">Матовое</button>
-        <button type="button" data-set="bands" aria-pressed="false">Полосы</button>
-      </div>
-    </figure>
-    <div class="glass-ctl">
-      <p class="glass-note" aria-live="polite">Переключите режим - так выглядит одно и то же стекло на нашем объекте с разной плёнкой.</p>
-    </div>
-  </div>
-
+<section class="sec sec-white sec-trust">
   <div class="wrap trust" id="o-nas">
     <div class="trust-top">
       <h2>12 лет в Алматы</h2>
@@ -217,6 +197,30 @@
       <h2>Свет остаётся, лишние взгляды и солнце - нет</h2>
       <p class="lead">Клеим плёнку на месте, стекло снимать не нужно. Подберём образцы под ваш офис на замере.</p>
     </div>
+
+    <div class="glass-demo">
+    <figure class="pane" data-state="clear" aria-label="Цельностеклянная перегородка GlassProff на объекте: режимы плёнки">
+      <picture>
+        <source media="(max-width: 760px)" srcset="assets/hero-m.webp" width="900" height="900">
+        <img class="pane-img" src="assets/hero.webp" width="1200" height="800" alt="Цельностеклянная перегородка с дверью на входе в бизнес-центр, за стеклом офисный коридор" loading="lazy" decoding="async">
+      </picture>
+      <div class="cells" aria-hidden="true">
+        <div class="cell"><div class="cl frost"></div><div class="cl tint"></div><div class="cl bands"></div></div>
+        <div class="cell"><div class="cl frost"></div><div class="cl tint"></div><div class="cl bands"></div></div>
+        <div class="cell"><div class="cl frost"></div><div class="cl tint"></div><div class="cl bands"></div></div>
+      </div>
+      <div class="sheen" aria-hidden="true"></div>
+      <div class="seg" role="group" aria-label="Режим стекла">
+        <button type="button" data-set="clear" aria-pressed="true">Прозрачное</button>
+        <button type="button" data-set="tint" aria-pressed="false">Тонировка</button>
+        <button type="button" data-set="frost" aria-pressed="false">Матовое</button>
+        <button type="button" data-set="bands" aria-pressed="false">Полосы</button>
+      </div>
+    </figure>
+    <div class="glass-ctl">
+      <p class="glass-note" aria-live="polite">Переключите режим - так выглядит одно и то же стекло на нашем объекте с разной плёнкой.</p>
+    </div>
+  </div>
 
     <div class="pair" id="tonirovka-peregorodok">
       <div class="pair-ph"><img class="rv" src="assets/tonirovka-peregorodok.webp" width="1000" height="800" loading="lazy" decoding="async" alt="Каркасная перегородка с матовой плёнкой: силуэты мебели за стеклом размыты, свет проходит"></div>
@@ -317,13 +321,13 @@
 <section class="sec sec-white" id="obekty">
   <div class="wrap">
     <div class="obj-top">
-      <figure class="obj-lead"><img class="rv" src="assets/obekt-lobbi.webp" width="747" height="933" loading="lazy" decoding="async" alt="Стеклянный куб в чёрной алюминиевой раскладке в лобби жилого комплекса"></figure>
+      <figure class="obj-lead"><img class="rv" src="assets/obekt-logistika-lead.webp" width="900" height="1125" loading="lazy" decoding="async" alt="Кабинеты за перегородками в серебристом профиле с матовым стеклом и открытой дверью в офисе логистической компании"></figure>
       <div class="obj-head">
         <div class="head">
           <h2>Объекты в Алматы</h2>
           <p class="lead">Офисы, бизнес-центры, производства, жилые дома. Новые монтажи выкладываем в Instagram.</p>
         </div>
-        <p class="obj-cap"><b>Лобби жилого комплекса</b><span>Цельный стеклянный куб в чёрной алюминиевой раскладке - каркасная система, стекло в пол</span></p>
+        <p class="obj-cap"><b>Офис логистической компании</b><span>Каркасные перегородки в серебристом профиле, матовое стекло с прозрачными полосами, распашные двери</span></p>
         <figure class="obj-second"><img class="rv" src="assets/obekt-5point.webp" width="960" height="640" loading="lazy" decoding="async" alt="Дверь кабинета в деревянном портале с жёлтым стеклом в коворкинге"><figcaption><b>Коворкинг</b><span>Кабинет в деревянном портале, чёрный профиль и жёлтое стекло</span></figcaption></figure>
         <div class="lent-nav" aria-label="Листать объекты">
           <button class="lent-btn" type="button" data-dir="-1" aria-label="Назад"><svg class="ic"><use href="#ic-arr"/></svg></button>
@@ -334,7 +338,6 @@
     <div class="lent" tabindex="0" aria-label="Фото объектов, лента листается стрелками">
       <figure class="lent-i"><img class="rv" src="assets/obekt-redlab.webp" width="620" height="775" loading="lazy" decoding="async" alt="Переговорная за каркасной перегородкой в чёрном профиле на фоне красной стены IT-офиса"><figcaption><b>IT-офис</b><span>Переговорная в чёрном профиле, полосы на уровне глаз</span></figcaption></figure>
       <figure class="lent-i"><img class="rv" src="assets/obekt-kofeynya.webp" width="620" height="775" loading="lazy" decoding="async" alt="Цельностеклянный угол кофейни в деревянном коробе внутри бизнес-центра"><figcaption><b>Кофейня в бизнес-центре</b><span>Цельностеклянный угол в деревянном коробе</span></figcaption></figure>
-      <figure class="lent-i"><img class="rv" src="assets/obekt-logistika.webp" width="620" height="775" loading="lazy" decoding="async" alt="Кабинеты за перегородками в серебристом профиле с матовым стеклом и открытой дверью"><figcaption><b>Офис логистической компании</b><span>Серебристый профиль, матовое стекло, распашные двери</span></figcaption></figure>
       <figure class="lent-i"><img class="rv" src="assets/obekt-openspace.webp" width="620" height="775" loading="lazy" decoding="async" alt="Ряд кабинетов за каркасными перегородками с дверями вдоль open space"><figcaption><b>Open space</b><span>Ряд кабинетов за каркасными перегородками</span></figcaption></figure>
       <figure class="lent-i"><img class="rv" src="assets/obekt-shourum.webp" width="620" height="775" loading="lazy" decoding="async" alt="Коридор шоурума камня с перегородками, матовыми полосами и названием компании на стекле"><figcaption><b>Шоурум камня</b><span>Коридор из перегородок с полосами и логотипом</span></figcaption></figure>
       <figure class="lent-i"><img class="rv" src="assets/obekt-gradient.webp" width="620" height="775" loading="lazy" decoding="async" alt="Перегородки кабинетов с декоративной плёнкой-градиентом из точек"><figcaption><b>Офис с кабинетами</b><span>Декоративная плёнка-градиент на перегородках</span></figcaption></figure>
@@ -450,6 +453,6 @@
   <a class="mbar-ig" href="https://www.instagram.com/glassproject.kz/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic"><use href="#ic-ig"/></svg></a>
 </nav>
 
-<script src="script.js?v=20261102-2" defer></script>
+<script src="script.js?v=20261102-3" defer></script>
 </body>
 </html>
