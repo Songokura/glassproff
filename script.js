@@ -143,33 +143,30 @@
     pio.observe(pane);
   }
 
-  /* До/после: линия идёт за ползунком, при появлении отъезжает к середине */
-  var ba=d.querySelector('.ba');
-  if(ba){
-    var range=ba.querySelector('.ba-range'), baTouched=false, anim=null;
-    function setX(v){ ba.style.setProperty('--x', v+'%'); }
-    range.addEventListener('input', function(){ baTouched=true; if(anim) cancelAnimationFrame(anim); setX(range.value); });
-    range.addEventListener('pointerdown', function(){ baTouched=true; if(anim) cancelAnimationFrame(anim); });
-    function reveal(){
-      if(reduce || baTouched){ setX(50); range.value=50; return; }
-      var from=90, to=50, t0=null, dur=1500;
-      setX(from); range.value=from;
-      function step(ts){
-        if(baTouched) return;
-        if(!t0) t0=ts;
-        var p=Math.min(1,(ts-t0)/dur); p=1-Math.pow(1-p,3);
-        var v=from+(to-from)*p; setX(v); range.value=v;
-        if(p<1) anim=requestAnimationFrame(step);
-      }
-      anim=requestAnimationFrame(step);
+  /* Галереи фото в блоках: шаг - один кадр, счётчик, крайняя кнопка гаснет, без прокрутки стрелки прячутся */
+  d.querySelectorAll('.gal').forEach(function(g){
+    var t=g.querySelector('.gal-track'), nv=g.querySelector('.gal-nav');
+    if(!t || !nv) return;
+    var bs=nv.querySelectorAll('.gal-btn'), cnt=nv.querySelector('.gal-n'), items=t.children, raf=0;
+    function step(){ var gap=parseFloat(getComputedStyle(t).columnGap)||0; return items[0].getBoundingClientRect().width+gap; }
+    function upd(){
+      raf=0;
+      var max=t.scrollWidth-t.clientWidth, x=t.scrollLeft;
+      nv.hidden = max<=2;
+      bs[0].disabled = x<=2;
+      bs[1].disabled = x>=max-2;
+      var i = x>=max-2 ? items.length-1 : Math.round(x/step());
+      if(cnt) cnt.textContent=(i+1)+' / '+items.length;
     }
-    if('IntersectionObserver' in w){
-      var bio=new IntersectionObserver(function(es){
-        es.forEach(function(e){ if(e.isIntersecting){ setTimeout(reveal, 250); bio.disconnect(); } });
-      }, {threshold:.5});
-      bio.observe(ba);
-    } else setX(50);
-  }
+    function go(dir){ t.scrollBy({left:step()*dir, behavior:reduce?'auto':'smooth'}); }
+    bs.forEach(function(b){ b.addEventListener('click', function(){ go(+b.dataset.dir); }); });
+    t.addEventListener('scroll', function(){ if(!raf) raf=requestAnimationFrame(upd); }, {passive:true});
+    t.addEventListener('keydown', function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); go(e.key==='ArrowRight'?1:-1); }
+    });
+    var gw=w.innerWidth; w.addEventListener('resize', function(){ if(w.innerWidth===gw) return; gw=w.innerWidth; upd(); });
+    upd();
+  });
 
   /* Лента объектов: шаг - одна карточка, крайняя кнопка гаснет, без прокрутки стрелки прячутся */
   var lent=d.querySelector('.lent'), nav=d.querySelector('.lent-nav');

@@ -290,29 +290,25 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 .pair-r .pair-ph{order:2}.pair-r .pair-tx{order:1}
 .pair-ph img{width:100%;height:auto;border-radius:var(--r);aspect-ratio:5/4;object-fit:cover}
 .pair-tx > p{margin-top:16px}
-.ba{position:relative;overflow:hidden;border-radius:var(--r);aspect-ratio:1040/589;background:var(--navy2);user-select:none;-webkit-user-select:none;touch-action:pan-y}
-.ba-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;aspect-ratio:auto;border-radius:0}
-.ba-posle{clip-path:inset(0 0 0 var(--x))}
-.ba-tag{position:absolute;top:14px;z-index:2;padding:6px 10px;border-radius:var(--r);font-family:var(--fd);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:rgba(11,20,36,.7);color:#fff}
-.ba-tag-do{left:14px}.ba-tag-posle{right:14px}
-.ba-line{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:#fff;z-index:2;pointer-events:none;box-shadow:0 0 12px rgba(255,255,255,.6)}
-.ba-line i{position:absolute;top:50%;left:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px -8px rgba(0,0,0,.5)}
-.ba-line .ic{width:16px;height:16px}
-.ba-line .ic:first-child{transform:scaleX(-1);margin-right:-2px}
-.ba-line .ic:last-child{margin-left:-2px}
-.ba-range{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;z-index:3;-webkit-appearance:none;appearance:none}
-.ba-range::-webkit-slider-thumb{-webkit-appearance:none;width:46px;height:100%}
-.ba-range::-moz-range-thumb{width:46px;height:100%;border:0}
-.ba:has(.ba-range:focus-visible) .ba-line i{outline:2px solid var(--blue2);outline-offset:3px}
-.ba-hint{font-size:13px;color:#8F9DB2;margin-top:10px}
-.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:clamp(28px,3vw,40px)}
-.tiles li{display:grid;gap:10px}
-.tiles img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:var(--r)}
-.tiles span{font-size:13.5px;color:#9FACC0}
-.brand .brand-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.brand-grid li{display:grid;gap:8px}
-.brand-grid img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r)}
-.brand-grid span{font-size:13px;color:#9FACC0}
+.pfoot.top{margin-top:20px}
+.pfoot.top + p,.pfoot.top + .ptxt-p,.pfoot.top + .ticks{margin-top:22px}
+/* Галерея фото: листается пальцем, стрелками и клавиатурой */
+.gal{position:relative;--ar:4/3;--w:88%}
+.gal-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;border-radius:var(--r);outline-offset:3px}
+.gal-track::-webkit-scrollbar{display:none}
+.gal .gal-track .gal-i{flex:0 0 var(--w);width:var(--w);min-width:0;height:auto;aspect-ratio:var(--ar);object-fit:cover;border-radius:var(--r);scroll-snap-align:start;background:var(--navy2)}
+.gal .gal-track .gal-i:only-child{flex-basis:100%;width:100%}
+.gal-nav{position:absolute;bottom:10px;right:calc(100% - var(--w) + 10px);display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:rgba(11,20,36,.74);color:#fff}
+.gal-nav[hidden]{display:none}
+.gal-btn{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.12);transition:background-color .2s,opacity .2s,transform .12s}
+.gal-btn .ic{width:16px;height:16px}
+.gal-btn[data-dir="-1"] .ic{transform:scaleX(-1)}
+.gal-btn:disabled{opacity:.3;cursor:default}
+.gal-btn:active:not(:disabled){transform:scale(.94)}
+@media (hover:hover){.gal-btn:not(:disabled):hover{background:rgba(255,255,255,.26)}}
+.gal-n{min-width:46px;text-align:center;font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.rep-ph.rep-gal{display:block}
+.brand .gal{--ar:4/5;--w:64%}
 .brand .pair-tx .btn{margin-top:26px}
 
 /* Ремонт */
@@ -471,7 +467,7 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
   .pluses{grid-template-columns:1fr;gap:12px}
 
   .sp,.sp-l{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto}
-  .sp .ph,.sp-l .ph,.sp-r .ph{grid-column:1;grid-row:1;aspect-ratio:4/5;max-height:62svh}
+  .sp .ph,.sp-l .ph,.sp-r .ph{grid-column:1;grid-row:1;aspect-ratio:1/1;max-height:46svh;width:100%}
   .sp .ptxt,.sp-l .ptxt,.sp-r .ptxt{grid-column:1;grid-row:2;padding:28px var(--gut) 40px}
   .ptxt h2{font-size:clamp(30px,8.6vw,38px)}
   .ptxt-p{margin-top:14px}
@@ -492,17 +488,15 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
   .seg button span{font-size:13px}
   .pair,.pair-l,.pair-r{grid-template-columns:1fr;gap:22px;margin-top:64px}
   .pair .pair-ph{order:1}.pair .pair-tx{order:2}
-  .ba{aspect-ratio:4/3}
-  .tiles{grid-template-columns:1fr;gap:18px}
-  .tiles img{aspect-ratio:4/3}
-  .brand .brand-grid{order:1;gap:10px}
-  .brand .pair-tx{order:2}
-  .brand-grid span{font-size:12.5px}
 
   .rep,.rep-l,.rep-r{grid-template-columns:1fr;gap:18px;padding:14px 14px 20px}
   .rep .rep-ph{order:1}.rep .rep-tx{order:2}
   .rep-tx h3{font-size:24px}
   .rep-ph{grid-template-columns:3fr 2fr}
+  .rep-ph.rep-gal{display:block}
+  .rep-ph-one{grid-template-columns:1fr}
+  .gal{--w:86%}
+  .brand .gal{--w:72%}
 
   .head-nav{flex-direction:column;align-items:flex-start;gap:14px}
   .lent-i{flex-basis:76vw}
@@ -597,8 +591,7 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
   .brand .pair-tx{order:-1;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:48px;align-items:end}
   .brand .pair-tx > *{grid-column:1}
   .brand .pair-tx .btn{grid-column:2;grid-row:1 / span 3;align-self:end;margin-top:0}
-  .brand .brand-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-  .brand-grid img{aspect-ratio:3/4}
+  .brand .gal{--ar:3/4;--w:calc(25% - 7.5px)}
 }
 /* Полосы в перспективе каждого стекла: SVG по углам граней куба */
 .demo-row .bands{display:none}
