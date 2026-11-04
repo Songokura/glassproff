@@ -169,8 +169,9 @@
   });
 
   /* Лента объектов: шаг - одна карточка, крайняя кнопка гаснет, без прокрутки стрелки прячутся */
-  var lent=d.querySelector('.lent'), nav=d.querySelector('.lent-nav');
-  if(lent && nav){
+  d.querySelectorAll('.lent').forEach(function(lent){
+    var sec=lent.closest('section'), nav=sec&&sec.querySelector('.lent-nav');
+    if(!nav) return;
     var btns=nav.querySelectorAll('.lent-btn');
     function stepPx(){ var c=lent.querySelector('.lent-i'); if(!c) return 300; var gap=parseFloat(getComputedStyle(lent).columnGap||getComputedStyle(lent).gap)||16; return c.getBoundingClientRect().width+gap; }
     function update(){
@@ -186,9 +187,8 @@
       if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); lent.scrollBy({left:stepPx()*(e.key==='ArrowRight'?1:-1), behavior:reduce?'auto':'smooth'}); }
     });
     update();
-  }
+  });
 
-  /* Расчёт: ориентир и отправка в WhatsApp */
   var form=d.getElementById('calc');
   if(form){
     var qty=d.getElementById('qty'), sum=d.getElementById('sum'), qtyL=d.getElementById('qty-l'), phone=d.getElementById('phone');
