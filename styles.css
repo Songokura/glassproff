@@ -202,7 +202,7 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 .pfoot{display:flex;align-items:center;flex-wrap:wrap;gap:16px 32px;margin-top:30px}
 
 /* проявление */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .9s var(--ease)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s var(--ease),transform .6s var(--ease)}
 .rv.is-in{opacity:1;transform:none}
 .head .rv.is-in + .rv{transition-delay:.1s}
 
@@ -254,18 +254,18 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 #razdvizhnye .fr{--frost:url("assets/razd-1-frost.webp")}
 #kombinirovannye .fr{--frost:url("assets/komb-1-frost.webp")}
 .sp .ph::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,27,46,0) 70%,rgba(14,27,46,.5))}
-.ptxt{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hh) + 24px) clamp(24px,5vw,80px) 110px;min-width:0}
+.ptxt{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hh) + 20px) clamp(24px,5vw,80px) 72px;min-width:0}
 .sp-l .ptxt{padding-left:clamp(24px,5vw,80px)}
-.ptxt h2{color:#fff;font-size:clamp(32px,3.6vw,56px)}
+.ptxt h2{color:#fff;font-size:clamp(30px,3.3vw,50px)}
 .ptxt-p{color:#B3BFD0;margin-top:20px;font-size:clamp(15px,1.15vw,17px);line-height:1.55}
 .ptxt .ticks li{color:#D9E1EC}
 .ptxt .price{color:#fff}
-.ptxt > *{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .8s var(--ease)}
+.ptxt > *{opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .55s var(--ease)}
 .pw.on .ptxt > *{opacity:1;transform:none}
-.pw.on .ptxt > :nth-child(2){transition-delay:.08s}
-.pw.on .ptxt > :nth-child(3){transition-delay:.16s}
-.pw.on .ptxt > :nth-child(4){transition-delay:.24s}
-.pw.on .ptxt > :nth-child(5){transition-delay:.32s}
+.pw.on .ptxt > :nth-child(2){transition-delay:.05s}
+.pw.on .ptxt > :nth-child(3){transition-delay:.1s}
+.pw.on .ptxt > :nth-child(4){transition-delay:.15s}
+.pw.on .ptxt > :nth-child(5){transition-delay:.2s}
 .pcap{position:absolute;bottom:22px;z-index:5;font-family:var(--fd);font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:6px 12px;background:rgba(11,20,36,.5);border-radius:var(--r)}
 .sp-r .pcap{right:24px}
 .sp-l .pcap{left:24px}
@@ -651,3 +651,21 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 .gal-plate{transform:scale(calc(1.02 + .08*var(--exit,0)));transform-origin:50% 40%}
 @media (max-width:760px),(prefers-reduced-motion:reduce){.gal-plate{transform:none}}
 @media (max-width:760px){.rail{stroke-width:.42}}
+
+/* Плиты систем на телефоне: ровно один экран, фото забирает остаток высоты (05.11.2026) */
+@media (max-width:760px){
+  .sp,.sp-l{display:flex;flex-direction:column;height:100svh;min-height:0}
+  .sp .ph,.sp-l .ph,.sp-r .ph{flex:1 1 auto;aspect-ratio:auto;max-height:none;min-height:0;height:auto}
+  .sp .ptxt,.sp-l .ptxt,.sp-r .ptxt{flex:0 0 auto;padding:18px var(--gut) calc(72px + env(safe-area-inset-bottom))}
+  .ptxt .kicker{margin-bottom:10px}
+  .ptxt h2{font-size:clamp(26px,7.4vw,34px)}
+  .ptxt .pfoot{flex-wrap:nowrap;justify-content:space-between;gap:12px;margin-top:14px}
+  .ptxt .pfoot .btn{width:auto;height:46px;padding:0 18px;flex:0 0 auto}
+  .ptxt .price{font-size:30px}
+  .ptxt .pfoot.top + .ptxt-p{margin-top:12px}
+  .ptxt-p{font-size:14.5px;line-height:1.5}
+  .ptxt .ticks{margin-top:12px}
+  .ptxt .ticks li{font-size:14px}
+}
+@media (max-width:760px) and (max-height:780px){.ptxt .ticks{display:none}}
+@media (max-width:760px) and (max-height:600px){.ptxt-p{display:none}}

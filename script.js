@@ -78,9 +78,9 @@
       var stay=r.height>H+1 ? clamp(-r.top/(r.height-H)) : enter;
       set(pw,st,'enter',enter); set(pw,st,'exit',exit); set(pw,st,'stay',stay);
       pw.classList.toggle('gone', exit>=1);
-      pw.classList.toggle('on', enter>0.58);
+      pw.classList.toggle('on', enter>0.32);
       if(pw.classList.contains('pw-sp')){
-        var open = mobileMQ.matches ? clamp((enter-0.25)/0.6) : clamp((enter-0.4)/0.6);
+        var open = mobileMQ.matches ? clamp((enter-0.08)/0.5) : clamp((enter-0.18)/0.55);
         set(pw,st,'open',open);
       }
     });
