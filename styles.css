@@ -269,8 +269,7 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 .pcap{position:absolute;bottom:22px;z-index:5;font-family:var(--fd);font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7);padding:6px 12px;background:rgba(11,20,36,.5);border-radius:var(--r)}
 .sp-r .pcap{right:24px}
 .sp-l .pcap{left:24px}
-.pw-sp{scroll-margin-top:0;height:155svh}
-/* плита стоит на экране целиком 55svh прокрутки, потом на неё наезжает следующая (05.11.2026) */
+.pw-sp{scroll-margin-top:0}
 
 /* Тонировка */
 .ton .head .kicker{color:var(--blue-soft)}
@@ -680,4 +679,10 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
   .gal-plate .gal-btn{width:48px;height:48px}
   .gal-plate .gal-btn .ic{width:18px;height:18px}
   .gal-plate .gal-n{min-width:54px;font-size:14px}
+}
+/* Плиты систем на десктопе ниже экрана: встают под шапку, снизу отступ, видны целиком со стрелками (05.11.2026, без задержки) */
+@media (min-width:761px){
+  .pw-sp .plate.sp{top:var(--hh);height:calc(100svh - var(--hh) - 28px)}
+  .pw-sp .ptxt{padding-top:32px;padding-bottom:40px}
+  .pw-sp .ptxt h2{font-size:clamp(28px,3vw,46px)}
 }
