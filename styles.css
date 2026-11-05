@@ -251,7 +251,7 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 .sp .mul{opacity:calc(.92 * (1 - clamp(0, (var(--open,0) - .5) / .4, 1)))}
 #tselnosteklyannye .fr{--frost:url("assets/tselnosteklyannye-frost.webp")}
 #karkasnye .fr{--frost:url("assets/kark-1-frost.webp")}
-#razdvizhnye .fr{--frost:url("assets/razd-1-frost.webp")}
+#razdvizhnye .fr{--frost:url("assets/razd-2-frost.webp")}
 #kombinirovannye .fr{--frost:url("assets/komb-1-frost.webp")}
 .sp .ph::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,27,46,0) 70%,rgba(14,27,46,.5))}
 .ptxt{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hh) + 20px) clamp(24px,5vw,80px) 72px;min-width:0}
