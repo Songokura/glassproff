@@ -250,9 +250,9 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 .sp .sq{left:calc(var(--l) + (var(--r) - var(--l)) * clamp(0, (var(--open,0) - var(--s)) / .5, 1));opacity:calc(4 * clamp(0, (var(--open,0) - var(--s)) / .5, 1) * (1 - clamp(0, (var(--open,0) - var(--s)) / .5, 1)))}
 .sp .mul{opacity:calc(.92 * (1 - clamp(0, (var(--open,0) - .5) / .4, 1)))}
 #tselnosteklyannye .fr{--frost:url("assets/tselnosteklyannye-frost.webp")}
-#karkasnye .fr{--frost:url("assets/kark-1-frost.webp")}
-#razdvizhnye .fr{--frost:url("assets/razd-2-frost.webp")}
-#kombinirovannye .fr{--frost:url("assets/komb-1-frost.webp")}
+#karkasnye .fr{--frost:url("assets/kf-1-frost.webp")}
+#razdvizhnye .fr{--frost:url("assets/rf-1-frost.webp")}
+#kombinirovannye .fr{--frost:url("assets/cf-1-frost.webp")}
 .sp .ph::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,27,46,0) 70%,rgba(14,27,46,.5))}
 .ptxt{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hh) + 20px) clamp(24px,5vw,80px) 72px;min-width:0}
 .sp-l .ptxt{padding-left:clamp(24px,5vw,80px)}
@@ -685,4 +685,21 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
   .pw-sp .plate.sp{top:var(--hh);height:calc(100svh - var(--hh) - 28px)}
   .pw-sp .ptxt{padding-top:32px;padding-bottom:40px}
   .pw-sp .ptxt h2{font-size:clamp(28px,3vw,46px)}
+}
+/* Фото систем целиком, без обрезки: кадр вписан, поля - размытая копия кадра (05.11.2026, просьба клиента) */
+.gal-fit{position:relative;overflow:hidden;background:var(--navy2) var(--bg) center/cover no-repeat}
+.gal-fit::before{content:"";position:absolute;inset:0;background:rgba(11,20,36,.22)}
+.sp .ph .gal-fit img,.gal-fit img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:none}
+/* Тонировка перегородок на телефоне: переключатель сразу под фото куба, без прокрутки вниз-вверх (05.11.2026) */
+@media (max-width:760px){
+  .demo-row{gap:0}
+  .demo-row .demo-tx{display:contents}
+  .demo-row .demo-tx h3{order:1}
+  .demo-row .demo-tx .pfoot{order:2;margin-bottom:20px}
+  .demo-row .pane{order:3}
+  .demo-row .seg{order:4;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:10px;gap:6px}
+  .demo-row .demo-tx > p{order:5;margin-top:16px}
+  .demo-row .seg button{padding:11px 12px;align-content:center;min-height:50px}
+  .demo-row .seg button b{font-size:14px}
+  .demo-row .seg button span{display:none}
 }
