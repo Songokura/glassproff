@@ -7,6 +7,25 @@
   function easeOut(t){ return 1-Math.pow(1-t,3); }
   function HH(){ return parseFloat(getComputedStyle(d.documentElement).getPropertyValue('--hh'))||76; }
 
+  /* Плавность: Lenis + GSAP. Без библиотек или при reduced-motion - прежнее поведение */
+  var G=w.gsap, ST=w.ScrollTrigger, HAS=!!(G && ST) && !reduce;
+  var lenis=null;
+  if(HAS){
+    G.registerPlugin(ST); if(w.SplitText) G.registerPlugin(w.SplitText);
+    ST.config({ignoreMobileResize:true});
+    d.documentElement.classList.add('gs');
+    if(w.Lenis){
+      lenis=new w.Lenis({lerp:.1, smoothWheel:true});
+      lenis.on('scroll', ST.update);
+      G.ticker.add(function(t){ lenis.raf(t*1000); });
+      G.ticker.lagSmoothing(0);
+    }
+  }
+  function scrollToY(y, instant){
+    if(lenis) lenis.scrollTo(y, instant?{immediate:true, force:true}:{duration:1.2, easing:function(t){ return 1-Math.pow(1-t,4); }});
+    else w.scrollTo({top:y, behavior:(reduce||instant)?'auto':'smooth'});
+  }
+
   /* Шапка и липкая панель */
   var hdr=d.querySelector('.hdr'), mbar=d.querySelector('.mbar'), kont=d.getElementById('kontakty');
 
@@ -15,6 +34,7 @@
   function setMenu(open){
     d.body.classList.toggle('menu-open', open);
     mnav.hidden=!open;
+    if(lenis){ if(open) lenis.stop(); else lenis.start(); }
     burger.setAttribute('aria-expanded', open?'true':'false');
     burger.setAttribute('aria-label', open?'Закрыть меню':'Открыть меню');
   }
@@ -32,7 +52,7 @@
     var id=a.getAttribute('href').slice(1); if(!id) return;
     var t=d.getElementById(id); if(!t) return;
     e.preventDefault();
-    w.scrollTo({top:Math.max(0,targetTop(t)), behavior:reduce?'auto':'smooth'});
+    scrollToY(Math.max(0,targetTop(t)));
     if(history.pushState) history.pushState(null,'','#'+id);
   });
 
@@ -43,7 +63,7 @@
   if(d.fonts && d.fonts.ready){ d.fonts.ready.then(startHero, startHero); } else startHero();
   if(location.hash){
     var ht=d.getElementById(location.hash.slice(1));
-    if(ht) setTimeout(function(){ w.scrollTo({top:Math.max(0,targetTop(ht)),behavior:'auto'}); }, 60);
+    if(ht) setTimeout(function(){ scrollToY(Math.max(0,targetTop(ht)), true); }, 60);
   }
 
   /* fitText: дисплейный заголовок не вылезает за контейнер */
@@ -92,7 +112,40 @@
 
   /* Проявление блоков */
   var rv=d.querySelectorAll('.rv');
-  if('IntersectionObserver' in w && !reduce){
+  if(HAS){
+    var MOB=mobileMQ.matches, E='power3.out';
+    /* заголовки секций: слова выезжают из-под линии */
+    var heads=[].slice.call(d.querySelectorAll('.head h2.rv, h3.rv'));
+    heads.forEach(function(h){ h.classList.remove('rv'); if(w.SplitText) h.style.visibility='hidden'; });
+    function splitHeads(){
+      heads.forEach(function(h){
+        h.style.visibility='';
+        var sp=new w.SplitText(h,{type:'lines,words', linesClass:'split-line'});
+        G.from(sp.words,{yPercent:110, duration:.9, ease:E, stagger:.035, scrollTrigger:{trigger:h, start:'top 90%', once:true}});
+      });
+      ST.refresh();
+    }
+    if(w.SplitText){ if(d.fonts && d.fonts.ready) d.fonts.ready.then(splitHeads, splitHeads); else splitHeads(); }
+    /* блоки: мягкое проявление пакетами, соседи по очереди */
+    var rvs=[].slice.call(d.querySelectorAll('.rv'));
+    /* телефон: блоки с фото не всплывают; цели якорей только проявляются, без сдвига */
+    if(MOB) rvs=rvs.filter(function(el){ if(el.querySelector('img')||el.tagName==='IMG'){ el.classList.add('is-in'); return false; } return true; });
+    G.set(rvs,{autoAlpha:0, y:function(i,el){ return el.id?0:24; }});
+    ST.batch(rvs,{start:'top 92%', once:true, onEnter:function(b){ G.to(b,{autoAlpha:1, y:0, duration:.9, ease:E, stagger:.08, overwrite:true, onComplete:function(){ b.forEach(function(el){ el.classList.add('is-in'); el.style.transform=''; }); }}); }});
+    /* сетки внутри блоков: карточки по одной */
+    ['.adv li','.facts > div','.steps li','.rev-i'].forEach(function(sel){
+      var els=[].slice.call(d.querySelectorAll(sel)); if(!els.length) return;
+      G.set(els,{autoAlpha:0, y:28});
+      ST.batch(els,{start:'top 94%', once:true, onEnter:function(b){ G.to(b,{autoAlpha:1, y:0, duration:.8, ease:E, stagger:.07, delay:.1, overwrite:true}); }});
+    });
+    /* фото вне плит: кадр раскрывается из-под стекла, только на десктопе */
+    if(!MOB){
+      d.querySelectorAll('.rep-ph > img, .pair-ph .gal-track').forEach(function(el){
+        G.fromTo(el,{clipPath:'inset(6% 6% 6% 6% round 18px)', scale:1.04},{clipPath:'inset(0% 0% 0% 0% round 0px)', scale:1, duration:1.2, ease:E, clearProps:'clipPath,transform', scrollTrigger:{trigger:el, start:'top 88%', once:true}});
+      });
+    }
+    w.addEventListener('load', function(){ ST.refresh(); });
+  } else if('IntersectionObserver' in w && !reduce){
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } });
     }, {rootMargin:'0px 0px -8% 0px', threshold:.06});

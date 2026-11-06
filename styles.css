@@ -818,3 +818,15 @@ h1{color:var(--navy)}
   .mbar a{color:var(--navy);border-right-color:var(--line)}
   .mbar a.mbar-wa{color:#fff}
 }
+
+/* Галереи: кадры по пропорции слота - на весь кадр с точкой кадрирования (06.11.2026) */
+.gal-cov{position:relative;overflow:hidden;background:var(--frost3)}
+.sp .ph .gal-cov img,.gal-cov img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--op,50% 50%);transform:none}
+
+/* Плавность: Lenis + GSAP (06.11.2026) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+.gs .rv{transition:none}
+.gs-st > *{will-change:transform,opacity}
+.split-line{overflow:clip;padding-bottom:.06em;margin-bottom:-.06em}
