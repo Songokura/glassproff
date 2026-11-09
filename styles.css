@@ -249,9 +249,9 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
 .sp .sq3{--l:66.66%;--r:100%;--s:.44}
 .sp .sq{left:calc(var(--l) + (var(--r) - var(--l)) * clamp(0, (var(--open,0) - var(--s)) / .5, 1));opacity:calc(4 * clamp(0, (var(--open,0) - var(--s)) / .5, 1) * (1 - clamp(0, (var(--open,0) - var(--s)) / .5, 1)))}
 .sp .mul{opacity:calc(.92 * (1 - clamp(0, (var(--open,0) - .5) / .4, 1)))}
-#tselnosteklyannye .fr{--frost:url("assets/tselnosteklyannye-frost.webp")}
-#karkasnye .fr{--frost:url("assets/kf-1-frost.webp")}
-#razdvizhnye .fr{--frost:url("assets/rf-1-frost.webp")}
+#tselnosteklyannye .fr{--frost:url("assets/tf-3-frost.webp");background-position:48% 60%}
+#karkasnye .fr{--frost:url("assets/kf-1-frost.webp");background-position:38% 76%}
+#razdvizhnye .fr{--frost:url("assets/rf-1-frost.webp");background-position:54% 54%}
 #kombinirovannye .fr{--frost:url("assets/cf-1-frost.webp")}
 .sp .ph::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,27,46,0) 70%,rgba(14,27,46,.5))}
 .ptxt{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--hh) + 20px) clamp(24px,5vw,80px) 72px;min-width:0}
@@ -830,3 +830,13 @@ html.lenis,html.lenis body{height:auto}
 .gs .rv{transition:none}
 .gs-st > *{will-change:transform,opacity}
 .split-line{overflow:clip;padding-bottom:.06em;margin-bottom:-.06em}
+/* Фото систем: перегородка в кадре целиком (09.11.2026, жалоба клиента на обрезку). Пропорция слота держится 1.1-1.25,
+   точка кадра --op у каждого фото подобрана по границам перегородки */
+@media (min-width:761px){
+  .pw-sp .sp-r{grid-template-columns:minmax(0,1fr) min(64%,clamp(calc((100svh - var(--hh) - 28px) * 1.1),54%,calc((100svh - var(--hh) - 28px) * 1.25)))}
+  .pw-sp .sp-l{grid-template-columns:min(64%,clamp(calc((100svh - var(--hh) - 28px) * 1.1),54%,calc((100svh - var(--hh) - 28px) * 1.25))) minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .sp .ph,.sp-l .ph,.sp-r .ph{max-height:calc(100vw / 1.1)}
+  .sp .ptxt,.sp-l .ptxt,.sp-r .ptxt{margin-block:auto}
+}
