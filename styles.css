@@ -849,3 +849,18 @@ html.lenis,html.lenis body{height:auto}
   .sp .ph,.sp-l .ph,.sp-r .ph{flex:0 0 auto;height:calc(100vw / 1.12);max-height:none}
   .sp .ptxt,.sp-l .ptxt,.sp-r .ptxt{margin-block:0;padding-bottom:40px}
 }
+/* Логотипы заказчиков в бегущих строках (10.11.2026, просьба клиента): серые, белые знаки затемнены; без файла - название */
+.marq-track{align-items:center}
+.marq-track .lg,.marq-track .lt{display:inline-flex;align-items:center;height:56px;padding:0 34px}
+.marq-track .lg::after,.marq-track .lt::after{display:none}
+.marq-track .lg img{height:30px;width:auto;max-width:none;filter:grayscale(1) contrast(1.1);opacity:.62;transition:filter .3s var(--ease),opacity .3s var(--ease)}
+.marq-track .lg.s img{height:24px}
+.marq-track .lg.l img{height:44px}
+.marq-track .lg.wt img{filter:brightness(0);opacity:.55}
+.marq-track .lt{font-size:clamp(15px,1.25vw,18px);color:var(--graphite);opacity:.55}
+@media (hover:hover){.marq-track .lg:not(.wt):hover img{filter:none;opacity:1}}
+@media (max-width:760px){
+  .marq-track .lg,.marq-track .lt{height:44px;padding:0 22px}
+  .marq-track .lg img{height:24px}.marq-track .lg.s img{height:19px}.marq-track .lg.l img{height:36px}
+  .marq-track .lt{font-size:15px}
+}
