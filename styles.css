@@ -864,3 +864,7 @@ html.lenis,html.lenis body{height:auto}
   .marq-track .lg img{height:24px}.marq-track .lg.s img{height:19px}.marq-track .lg.l img{height:36px}
   .marq-track .lt{font-size:15px}
 }
+/* Тонировка: тексты клиента со списками (10.11.2026); на телефоне подпись и список идут за абзацем, под переключателем */
+.demo-tx .ticks-h,.pair-tx .ticks-h{margin-top:18px}
+.ticks-h + .ticks{margin-top:10px}
+@media (max-width:760px){.demo-row .demo-tx > .ticks-h,.demo-row .demo-tx > .ticks{order:6}}
