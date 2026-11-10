@@ -667,8 +667,6 @@ h1{color:#fff;text-transform:uppercase;font-weight:700;line-height:.92;display:g
   .ptxt .ticks{margin-top:12px}
   .ptxt .ticks li{font-size:14px}
 }
-@media (max-width:760px) and (max-height:780px){.ptxt .ticks{display:none}}
-@media (max-width:760px) and (max-height:600px){.ptxt-p{display:none}}
 /* Плиты систем на широких экранах: текст по краю контейнера, стрелки слайдера крупнее и у края контейнера (05.11.2026) */
 @media (min-width:761px){
   .sp-r .ptxt{padding-left:max(clamp(24px,5vw,80px),calc((100vw - var(--max)) / 2))}
@@ -839,4 +837,15 @@ html.lenis,html.lenis body{height:auto}
 @media (max-width:760px){
   .sp .ph,.sp-l .ph,.sp-r .ph{max-height:calc(100vw / 1.1)}
   .sp .ptxt,.sp-l .ptxt,.sp-r .ptxt{margin-block:auto}
+}
+/* Тексты систем от клиента (10.11.2026): подпись над списком, короткие пункты в две колонки */
+.ticks-h{margin-top:18px;font-weight:600;color:var(--navy);font-size:clamp(15px,1.1vw,16px)}
+.ptxt .ticks-h + .ticks{margin-top:10px}
+@media (min-width:761px){.ptxt .ticks-2{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}.ptxt .ticks-2 li:last-child:nth-child(odd){grid-column:1 / -1}}
+/* Плиты систем на телефоне (10.11.2026): тексты клиента целиком, без скрытия списков; плита растёт по тексту,
+   фото держит пропорцию 1.1-1.15, поэтому перегородка в кадре не режется */
+@media (max-width:760px){
+  .sp,.sp-l{height:auto;min-height:100svh}
+  .sp .ph,.sp-l .ph,.sp-r .ph{flex:0 0 auto;height:calc(100vw / 1.12);max-height:none}
+  .sp .ptxt,.sp-l .ptxt,.sp-r .ptxt{margin-block:0;padding-bottom:40px}
 }
