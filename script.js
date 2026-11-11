@@ -272,3 +272,13 @@
     calc();
   }
 })();
+
+/* Конверсии Google Ads: звонок и WhatsApp по клику */
+(function(){
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href*="wa.me"]') : null;
+    if (!a || typeof window.gtag_report_conversion !== 'function' || !window.AW_CONV) return;
+    var key = a.getAttribute('href').indexOf('tel:') === 0 ? 'phone' : 'contact';
+    window.gtag_report_conversion(undefined, window.AW_CONV[key]);
+  });
+})();
