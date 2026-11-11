@@ -841,7 +841,7 @@ html.lenis,html.lenis body{height:auto}
 /* Тексты систем от клиента (10.11.2026): подпись над списком, короткие пункты в две колонки */
 .ticks-h{margin-top:18px;font-weight:600;color:var(--navy);font-size:clamp(15px,1.1vw,16px)}
 .ptxt .ticks-h + .ticks{margin-top:10px}
-@media (min-width:761px){.ptxt .ticks-2{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}.ptxt .ticks-2 li:last-child:nth-child(odd){grid-column:1 / -1}}
+@media (min-width:761px){.ptxt .ticks-2{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}.ptxt .ticks-2 li:last-child:nth-child(odd){grid-column:1 / -1}.head .ticks-2{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}}
 /* Плиты систем на телефоне (10.11.2026): тексты клиента целиком, без скрытия списков; плита растёт по тексту,
    фото держит пропорцию 1.1-1.15, поэтому перегородка в кадре не режется */
 @media (max-width:760px){
